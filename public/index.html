@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href=./styles/reset.css>
+    <link rel="stylesheet" href=./styles/styles.css>
+
+
+
+    <link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+    <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
+    </script>
+
+
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!--choosen-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+    <!--Bootstrap javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1><i class="fa fa-facebook-square" aria-hidden="true"></i> Quarantine Party</h1>
+            <br>
+        </div>
+
+        <div id="mapid"></div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+
+    console.log("in index")
+
+    //var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+    //us coordinate
+    var mymap = L.map('mapid').setView([39.82, -98.58], 4);
+
+    //india coordinate
+
+    // var mymap = L.map('mapid').setView([20.59, 78.96], 4)
+
+    //var marker = L.marker([39.82, -98.58]).addTo(mymap);
+
+    // var mymap = L.map('mapid').setView([37.09, -95.71], 5);
+
+    // var mymap = L.map('mapid', {
+    //     minZoom: 1,
+    //     maxZoom: 1,
+    // })
+
+    // sanjaypatil51/ck7tit8uw4qor1io3asbrrh83
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/sanjaypatil51/ck7tit8uw4qor1io3asbrrh83/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2FuamF5cGF0aWw1MSIsImEiOiJjazdzbWhhOXcwMDQ0M2VwMDM4aDJyeWtzIn0.ODE2wz8IBWaE8LIWDmT4WQ', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic2FuamF5cGF0aWw1MSIsImEiOiJjazdzbWhhOXcwMDQ0M2VwMDM4aDJyeWtzIn0.ODE2wz8IBWaE8LIWDmT4WQ'
+    }).addTo(mymap);
+
+    // L.mapbox.styleLayer('mapbox://styles/sanjaypatil51/ck7tit8uw4qor1io3asbrrh83').addTo(mymap)
+
+    var coOrdinates = [[37.338, -121.8863], [40.71, -74]]
+
+    var feature
+
+    mymap._initPathRoot()
+
+    // for (i in coOrdinates) {
+    //     var circle = L.circle(coOrdinates[i], {
+    //         color: 'red',
+    //         fillColor: '#f03',
+    //         fillOpacity: 0.5,
+    //         radius: 500
+    //     }).addTo(mymap)
+    // };
+
+    // mymap.fitWorld()
+
+    // var svg = d3.select("#mapid").select("svg"),
+    //     g = svg.append("g");
+
+    // d3.json("circle.json", function (collection) {
+    //     /* Add a LatLng object to each item in the dataset */
+    //     collection.objects.forEach(function (d) {
+    //         d.LatLng = new L.LatLng(d.circle.coordinates[0],
+    //             d.circle.coordinates[1])
+    //     })
+
+    //     var feature = g.selectAll("circle")
+    //         .data(collection.objects)
+    //         .enter().append("circle")
+    //         .style("stroke", "black")
+    //         .style("opacity", .6)
+    //         .style("fill", "red")
+    //         .attr("r", 200);
+
+    //     mymap.on("viewreset", update);
+    //     update();
+
+    //     function update() {
+    //         feature.attr("transform",
+    //             function (d) {
+    //                 return "translate(" +
+    //                     mymap.latLngToLayerPoint(d.LatLng).x + "," +
+    //                     mymap.latLngToLayerPoint(d.LatLng).y + ")";
+    //             }
+    //         )
+    //     }
+
+    // })
+
+    // var svg = d3.select(mymap.getPanes().overlayPane).append("svg").attr("width", 1200)
+    //     .attr("height", 600),
+    //     g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+    // var svg = d3.select(mymap.getPanes().overlayPane).append("svg").attr("width", 1200)
+    //     .attr("height", 600),
+    //     g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+    var svg = d3.select("#mapid").select("svg"),
+        g = svg.append("g");
+
+
+    var data = [
+        { "circle": { "coords": [37.338, -121.8863], "radius": 20 } },
+        { "circle": { "coords": [40.71, -74], "radius": 50 } }
+
+    ]
+
+
+    for (var i = 0; i < data.length; i++) {
+        data[i].LatLng = new L.LatLng(data[i].circle.coords[0], data[i].circle.coords[1])
+    };
+
+    var tooltip = d3.select("#mapid")
+        .append("div")
+        .attr('class', 'tooltip');
+
+
+    feature = g.selectAll("circle").data(data).enter().append("circle")
+        .attr("cx", function (d) { console.log(d); return d.circle.coords.x })
+        .attr("cy", function (d) { return d.circle.coords.y })
+        .style("stroke", "black")
+        .style("opacity", .3)
+        .style("fill", function (d) {
+            if (d.circle.radius < 21) {
+                return "purple"
+            }
+            else { return "red" }
+        })
+        .attr("r", function (d) { return d.circle.radius })
+        .on('mouseover', function () {console.log("in mouse");return tooltip.style("visibility", "visible").html("test test") })
+        .on("mousemove", function(){return tooltip.style("top", (event.pageY)+"px").style("left",(event.pageX)+"px");})
+        
+    // .on('mouseover', function () {console.log("in mouse");return tooltip.style("visibility", "visible").html("test test") })
+    // // .on("mousemove", function(){return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");})
+    // // .on("mouseout", function() {return tooltip.style("visibility", "hidden")})
+
+
+
+
+
+    mymap.on("viewreset", update)
+
+    //Call the update also on first load of the web page
+    update();
+
+    //Updates the position of the circle every time the map is updated
+    function update() {
+        feature.attr("transform",
+            function (d) {
+                return "translate(" +
+                    mymap.latLngToLayerPoint(d.LatLng).x + "," +
+                    mymap.latLngToLayerPoint(d.LatLng).y + ")";
+            })
+
+    };
+
+
+
+
+    // var objects = [{ "circle": { "coordinates": [37.338, -121.8863] } },
+    // { "circle": { "coordinates": [40.71, -74] } }
+    // ];
+
+    // //Loop through to create a LatLng element that can be projected onto Leaflet map
+    // for (var i = 0; i < objects.length; i++) {
+    //     objects[i].LatLng = new L.LatLng(objects[i].circle.coordinates[0], objects[i].circle.coordinates[1])
+    // };
+
+    // //Create the circle object and store it in features
+    // var feature = g.selectAll("circle")
+    //     .data(objects)
+    //     .enter()
+    //     .append("circle")
+    //     .style("fill", "red")
+    //     .attr("r", 20);
+
+
+    // //Make the circle dynamic, by calling the update function whenever view is view is reset
+    // mymap.on("viewreset", update)
+
+    // //Call the update also on first load of the web page
+    // update();
+
+    // //Updates the position of the circle every time the map is updated
+    // function update() {
+    //     feature.attr("transform",
+    //         function (d) {
+    //             return "translate(" +
+    //                 map.latLngToLayerPoint(d.LatLng).x + "," +
+    //                 map.latLngToLayerPoint(d.LatLng).y + ")";
+    //         })
+
+    // };
+
+
+
+
+
+</script>
+
+</html>

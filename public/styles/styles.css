@@ -2,3 +2,22 @@
   line-height: 2.5;  
   background:blue;
 }
+
+#mapid { height: 600px;     
+    
+  }
+
+  .tooltip {
+    position: absolute;
+    z-index: 5000;
+    visibility: visible;    
+    text-align: center;
+    padding: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    color:blue;
+    font-size: 100px;
+}
+
+
+ 
